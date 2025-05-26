@@ -40,21 +40,21 @@
 
       const img = new Image();
       img.onload = () => {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
+  requestAnimationFrame(() => {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
 
-        boxes.forEach(box => {
-          ctx.strokeStyle = getColor(box.label);
-          ctx.lineWidth = 2;
-          ctx.strokeRect(box.x, box.y, box.width, box.height);
-          ctx.font = '16px SF Pro Display';
-          ctx.fillStyle = getColor(box.label);
-          ctx.fillText(box.label, box.x + 5, box.y - 5);
-        });
-      };
-      img.src = URL.createObjectURL(file);
+    boxes.forEach(box => {
+      ctx.strokeStyle = getColor(box.label);
+      ctx.lineWidth = 2;
+      ctx.strokeRect(box.x, box.y, box.width, box.height);
+      ctx.font = '16px SF Pro Display';
+      ctx.fillStyle = getColor(box.label);
+      ctx.fillText(box.label, box.x + 5, box.y - 5);
     });
+  });
+};
 
     function getColor(label) {
       switch (label) {
